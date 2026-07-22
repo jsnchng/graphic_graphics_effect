@@ -102,6 +102,7 @@ namespace Drawing {
 #include "effect/shader/ge_contour_diagonal_flow_light_shader.params.in"
 #include "effect/shader/ge_dot_matrix_shader.params.in"
 #include "effect/shader/ge_frosted_glass_effect.params.in"
+#include "effect/shader/ge_halo_effect_shader.params.in"
 #include "effect/shader/ge_harmonium_effect_shader.params.in"
 #include "effect/shader/ge_particle_circular_halo_shader.params.in"
 #include "effect/shader/ge_sdf_edge_light_effect.params.in"

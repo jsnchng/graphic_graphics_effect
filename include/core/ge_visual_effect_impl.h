@@ -232,6 +232,7 @@ public:
     GE_DECLARE_MAKE_GET_PARAMS(GasifyFilterParams, GEGasifyFilterParams)
     GE_DECLARE_MAKE_GET_PARAMS(ColorGradientEffectParams, GEXColorGradientEffectParams)
     GE_DECLARE_MAKE_GET_PARAMS(HarmoniumEffectParams, GEHarmoniumEffectShaderParams)
+    GE_DECLARE_MAKE_GET_PARAMS(HaloEffectParams, GEHaloEffectShaderParams)
     GE_DECLARE_MAKE_GET_PARAMS(AIBarGlowEffectParams, GEXAIBarGlowEffectParams)
     GE_DECLARE_MAKE_GET_PARAMS(AIBarRectHaloEffectParams, GEXAIBarRectHaloEffectParams)
     GE_DECLARE_MAKE_GET_PARAMS(RoundedRectFlowlightEffectParams, GEXRoundedRectFlowlightEffectParams)

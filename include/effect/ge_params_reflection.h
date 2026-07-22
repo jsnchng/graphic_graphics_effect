@@ -346,6 +346,30 @@ enum class GEParamsMemberTag : uint32_t {
     GRID_WARP_ROTATION_ANGLES6,
     GRID_WARP_ROTATION_ANGLES7,
     GRID_WARP_ROTATION_ANGLES8,
+    HALO_EFFECT_MASK,
+    HALO_EFFECT_MASK_CLOCK,
+    HALO_EFFECT_MASK_PROGRESS,
+    HALO_EFFECT_USE_EFFECT_MASK,
+    HALO_EFFECT_TINT_COLOR,
+    HALO_EFFECT_RIPPLE_POSITION,
+    HALO_EFFECT_RIPPLE_PROGRESS,
+    HALO_EFFECT_DISTORT_PROGRESS,
+    HALO_EFFECT_DISTORT_FACTOR,
+    HALO_EFFECT_REFLECTION_FACTOR,
+    HALO_EFFECT_REFRACTION_FACTOR,
+    HALO_EFFECT_BLUR_LEFT,
+    HALO_EFFECT_BLUR_TOP,
+    HALO_EFFECT_MATERIAL_FACTOR,
+    HALO_EFFECT_CORNER_RADIUS,
+    HALO_EFFECT_RATE,
+    HALO_EFFECT_LIGHT_UP_DEGREE,
+    HALO_EFFECT_CUBIC_COEFF,
+    HALO_EFFECT_QUAD_COEFF,
+    HALO_EFFECT_SATURATION,
+    HALO_EFFECT_POS_R_G_B,
+    HALO_EFFECT_NEG_R_G_B,
+    HALO_EFFECT_FRACTION,
+    HALO_EFFECT_TOTAL_MATRIX,
     HARMONIUM_EFFECT_MASK,
     HARMONIUM_EFFECT_MASK_CLOCK,
     HARMONIUM_EFFECT_MASK_PROGRESS,
@@ -1526,6 +1550,7 @@ GE_PARAMS_TYPE_INFO(GEGasifyFilterParams, GASIFY, Gasify);
 GE_PARAMS_TYPE_INFO(GEGasifyScaleTwistFilterParams, GASIFY_SCALE_TWIST, GasifyScaleTwist);
 GE_PARAMS_TYPE_INFO(GEGreyShaderFilterParams, GREY, GREY);
 GE_PARAMS_TYPE_INFO(GEGridWarpShaderFilterParams, GRID_WARP, GridWarp);
+GE_PARAMS_TYPE_INFO(GEHaloEffectShaderParams, HALO_EFFECT, HaloEffect);
 GE_PARAMS_TYPE_INFO(GEHarmoniumEffectShaderParams, HARMONIUM_EFFECT, HarmoniumEffect);
 GE_PARAMS_TYPE_INFO(GEHeatDistortionFilterParams, HEAT_DISTORTION, HeatDistortion);
 GE_PARAMS_TYPE_INFO(GEImageMaskParams, IMAGE_MASK, ImageMask);
@@ -2075,6 +2100,38 @@ GE_PARAMS_ARRAY_ELEMENT_ACCESSOR(
     GEGridWarpShaderFilterParams, rotationAngles, 7, GRID_WARP_ROTATION_ANGLES7, GridWarp_RotationAngle7);
 GE_PARAMS_ARRAY_ELEMENT_ACCESSOR(
     GEGridWarpShaderFilterParams, rotationAngles, 8, GRID_WARP_ROTATION_ANGLES8, GridWarp_RotationAngle8);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, mask, HALO_EFFECT_MASK, HaloEffect_Mask);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, maskClock, HALO_EFFECT_MASK_CLOCK, HaloEffect_MaskClock);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, maskProgress, HALO_EFFECT_MASK_PROGRESS, HaloEffect_MaskProgress);
+GE_PARAMS_FIELD_ACCESSOR(
+    GEHaloEffectShaderParams, useEffectMask, HALO_EFFECT_USE_EFFECT_MASK, HaloEffect_UseEffectMask);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, tintColor, HALO_EFFECT_TINT_COLOR, HaloEffect_TintColor);
+GE_PARAMS_FIELD_ACCESSOR(
+    GEHaloEffectShaderParams, ripplePosition, HALO_EFFECT_RIPPLE_POSITION, HaloEffect_RipplePosition);
+GE_PARAMS_FIELD_ACCESSOR(
+    GEHaloEffectShaderParams, rippleProgress, HALO_EFFECT_RIPPLE_PROGRESS, HaloEffect_RippleProgress);
+GE_PARAMS_FIELD_ACCESSOR(
+    GEHaloEffectShaderParams, distortProgress, HALO_EFFECT_DISTORT_PROGRESS, HaloEffect_DistortProgress);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, distortFactor, HALO_EFFECT_DISTORT_FACTOR, HaloEffect_DistortFactor);
+GE_PARAMS_FIELD_ACCESSOR(
+    GEHaloEffectShaderParams, reflectionFactor, HALO_EFFECT_REFLECTION_FACTOR, HaloEffect_ReflectionFactor);
+GE_PARAMS_FIELD_ACCESSOR(
+    GEHaloEffectShaderParams, refractionFactor, HALO_EFFECT_REFRACTION_FACTOR, HaloEffect_RefractionFactor);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, blurLeft, HALO_EFFECT_BLUR_LEFT, HaloEffect_BlurLeft);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, blurTop, HALO_EFFECT_BLUR_TOP, HaloEffect_BlurTop);
+GE_PARAMS_FIELD_ACCESSOR(
+    GEHaloEffectShaderParams, materialFactor, HALO_EFFECT_MATERIAL_FACTOR, HaloEffect_MaterialFactor);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, cornerRadius, HALO_EFFECT_CORNER_RADIUS, HaloEffect_CornerRadius);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, rate, HALO_EFFECT_RATE, HaloEffect_Rate);
+GE_PARAMS_FIELD_ACCESSOR(
+    GEHaloEffectShaderParams, lightUpDegree, HALO_EFFECT_LIGHT_UP_DEGREE, HaloEffect_LightUpDegree);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, cubicCoeff, HALO_EFFECT_CUBIC_COEFF, HaloEffect_CubicCoeff);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, quadCoeff, HALO_EFFECT_QUAD_COEFF, HaloEffect_QuadCoeff);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, saturation, HALO_EFFECT_SATURATION, HaloEffect_Saturation);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, posRGB, HALO_EFFECT_POS_R_G_B, HaloEffect_PosRGB);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, negRGB, HALO_EFFECT_NEG_R_G_B, HaloEffect_NegRGB);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, fraction, HALO_EFFECT_FRACTION, HaloEffect_Fraction);
+GE_PARAMS_FIELD_ACCESSOR(GEHaloEffectShaderParams, totalMatrix, HALO_EFFECT_TOTAL_MATRIX, HaloEffect_TotalMatrix);
 GE_PARAMS_FIELD_ACCESSOR(GEHarmoniumEffectShaderParams, mask, HARMONIUM_EFFECT_MASK, HarmoniumEffect_Mask);
 GE_PARAMS_FIELD_ACCESSOR(
     GEHarmoniumEffectShaderParams, maskClock, HARMONIUM_EFFECT_MASK_CLOCK, HarmoniumEffect_MaskClock);
