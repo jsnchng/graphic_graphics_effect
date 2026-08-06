@@ -102,6 +102,22 @@ void GEVisualEffectContainer::UpdateCachedBlurImage(Drawing::Canvas* canvas,
                 vef->SetParam(GE_SHADER_HARMONIUM_EFFECT_USEEFFECTMASK, useeffectMask);
             }
         }
+        if (vef->GetName() == "CeliaEffect") {
+            vef->SetParam(GE_SHADER_CELIA_EFFECT_BLURLEFT, left);
+            vef->SetParam(GE_SHADER_CELIA_EFFECT_BLURTOP, top);
+            if (vef->GetImpl() == nullptr) {
+                continue;
+            }
+            std::shared_ptr<GECeliaEffectShaderParams> params = vef->GetImpl()->GetCeliaEffectParams();
+            if (params->useEffectMask != nullptr) {
+                GEUseEffectMaskParams maskParam;
+                maskParam.useEffect = params->useEffectMask->GetUseEffect();
+                maskParam.image = cachedImage;
+                std::shared_ptr<GEUseEffectShaderMask> useeffectMask =
+                    std::make_shared<GEUseEffectShaderMask>(maskParam);
+                vef->SetParam(GE_SHADER_CELIA_EFFECT_USEEFFECTMASK, useeffectMask);
+            }
+        }
         if (vef->GetName() == GE_SHADER_FROSTED_GLASS_EFFECT) {
             vef->SetParam(GE_SHADER_FROSTED_GLASS_EFFECT_BLURIMAGE, cachedImage);
         }
@@ -147,6 +163,9 @@ void GEVisualEffectContainer::UpdateCornerRadius(float cornerRadius)
         if (vef->GetName() == "HarmoniumEffect") {
             vef->SetParam(GE_SHADER_HARMONIUM_EFFECT_CORNERRADIUS, cornerRadius);
         }
+        if (vef->GetName() == "CeliaEffect") {
+            vef->SetParam(GE_SHADER_CELIA_EFFECT_CORNERRADIUS, cornerRadius);
+        }
      }
 }
 
@@ -156,6 +175,9 @@ void GEVisualEffectContainer::UpdateTotalMatrix(Drawing::Matrix totalMatrix)
         auto impl = vef->GetImpl();
         if (vef->GetName() == "HarmoniumEffect") {
             vef->SetParam(GE_SHADER_HARMONIUM_EFFECT_TOTALMATRIX, totalMatrix);
+        }
+        if (vef->GetName() == "CeliaEffect") {
+            vef->SetParam(GE_SHADER_CELIA_EFFECT_TOTALMATRIX, totalMatrix);
         }
         if (vef->GetName() == GE_SHADER_FROSTED_GLASS_EFFECT) {
             vef->SetParam(GE_SHADER_FROSTED_GLASS_EFFECT_SNAPSHOTMATRIX, totalMatrix);

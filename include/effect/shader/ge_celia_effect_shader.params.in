@@ -1,0 +1,41 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+struct [[ge::params(type=CELIA_EFFECT, name="CeliaEffect")]] GECeliaEffectShaderParams {
+    std::shared_ptr<GEShaderMask> mask = nullptr;
+    std::shared_ptr<GEShaderMask> maskClock = nullptr;
+    float maskProgress = 1.f;
+    std::shared_ptr<GEShaderMask> useEffectMask = nullptr;
+    Vector4f tintColor = Vector4f(0.0f, 0.0f, 0.0f, 0.0f);
+    std::vector<Vector2f> ripplePosition = {};
+    float rippleProgress = 0.f;
+    float distortProgress = 0.f;
+    float distortFactor = 0.f;
+    float reflectionFactor = 0.f;
+    float refractionFactor = 0.f;
+    float blurLeft = 0.f;
+    float blurTop = 0.f;
+    float materialFactor = 0.f;
+    float cornerRadius = 0.f;
+    float rate = 0.f;
+    float lightUpDegree = 0.f;
+    float cubicCoeff = 0.f;
+    float quadCoeff = 0.f;
+    float saturation = 0.f;
+    Vector3f posRGB = Vector3f(0.0f, 0.0f, 0.0f);
+    Vector3f negRGB = Vector3f(0.0f, 0.0f, 0.0f);
+    float fraction = 1.f; // 1 means default value
+    Drawing::Matrix totalMatrix;
+};
