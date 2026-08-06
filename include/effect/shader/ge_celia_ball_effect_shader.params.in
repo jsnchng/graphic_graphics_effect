@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-struct [[ge::params(type=CELIA_EFFECT, name="CeliaEffect")]] GECeliaEffectShaderParams {
+struct [[ge::params(type=CELIA_BALL_EFFECT, name="CeliaBallEffect")]] GECeliaBallEffectShaderParams {
     std::shared_ptr<GEShaderMask> mask = nullptr;
     std::shared_ptr<GEShaderMask> maskClock = nullptr;
     float maskProgress = 1.f;

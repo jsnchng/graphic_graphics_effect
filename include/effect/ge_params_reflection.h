@@ -136,30 +136,30 @@ enum class GEParamsMemberTag : uint32_t {
     BORDER_SDF_SHADER_DASH_WIDTH,
     BORDER_SDF_SHADER_DASH_GAP,
     BORDER_SDF_SHADER_SHAPE,
-    CELIA_EFFECT_MASK,
-    CELIA_EFFECT_MASK_CLOCK,
-    CELIA_EFFECT_MASK_PROGRESS,
-    CELIA_EFFECT_USE_EFFECT_MASK,
-    CELIA_EFFECT_TINT_COLOR,
-    CELIA_EFFECT_RIPPLE_POSITION,
-    CELIA_EFFECT_RIPPLE_PROGRESS,
-    CELIA_EFFECT_DISTORT_PROGRESS,
-    CELIA_EFFECT_DISTORT_FACTOR,
-    CELIA_EFFECT_REFLECTION_FACTOR,
-    CELIA_EFFECT_REFRACTION_FACTOR,
-    CELIA_EFFECT_BLUR_LEFT,
-    CELIA_EFFECT_BLUR_TOP,
-    CELIA_EFFECT_MATERIAL_FACTOR,
-    CELIA_EFFECT_CORNER_RADIUS,
-    CELIA_EFFECT_RATE,
-    CELIA_EFFECT_LIGHT_UP_DEGREE,
-    CELIA_EFFECT_CUBIC_COEFF,
-    CELIA_EFFECT_QUAD_COEFF,
-    CELIA_EFFECT_SATURATION,
-    CELIA_EFFECT_POS_R_G_B,
-    CELIA_EFFECT_NEG_R_G_B,
-    CELIA_EFFECT_FRACTION,
-    CELIA_EFFECT_TOTAL_MATRIX,
+    CELIA_BALL_EFFECT_MASK,
+    CELIA_BALL_EFFECT_MASK_CLOCK,
+    CELIA_BALL_EFFECT_MASK_PROGRESS,
+    CELIA_BALL_EFFECT_USE_EFFECT_MASK,
+    CELIA_BALL_EFFECT_TINT_COLOR,
+    CELIA_BALL_EFFECT_RIPPLE_POSITION,
+    CELIA_BALL_EFFECT_RIPPLE_PROGRESS,
+    CELIA_BALL_EFFECT_DISTORT_PROGRESS,
+    CELIA_BALL_EFFECT_DISTORT_FACTOR,
+    CELIA_BALL_EFFECT_REFLECTION_FACTOR,
+    CELIA_BALL_EFFECT_REFRACTION_FACTOR,
+    CELIA_BALL_EFFECT_BLUR_LEFT,
+    CELIA_BALL_EFFECT_BLUR_TOP,
+    CELIA_BALL_EFFECT_MATERIAL_FACTOR,
+    CELIA_BALL_EFFECT_CORNER_RADIUS,
+    CELIA_BALL_EFFECT_RATE,
+    CELIA_BALL_EFFECT_LIGHT_UP_DEGREE,
+    CELIA_BALL_EFFECT_CUBIC_COEFF,
+    CELIA_BALL_EFFECT_QUAD_COEFF,
+    CELIA_BALL_EFFECT_SATURATION,
+    CELIA_BALL_EFFECT_POS_R_G_B,
+    CELIA_BALL_EFFECT_NEG_R_G_B,
+    CELIA_BALL_EFFECT_FRACTION,
+    CELIA_BALL_EFFECT_TOTAL_MATRIX,
     CIRCLE_FLOWLIGHT_COLORS0,
     CIRCLE_FLOWLIGHT_COLORS1,
     CIRCLE_FLOWLIGHT_COLORS2,
@@ -1529,7 +1529,7 @@ GE_PARAMS_TYPE_INFO(GEBlurShaderFilterParams, BLUR, Blur);
 GE_PARAMS_TYPE_INFO(GEBorderLightShaderParams, BORDER_LIGHT, BorderLight);
 GE_PARAMS_TYPE_INFO(GEBorderSDFLGColorShaderParams, BORDER_SDF_LG_COLOR, BorderSDFLGColor);
 GE_PARAMS_TYPE_INFO(GEBorderSDFShaderParams, BORDER_SDF_SHADER, BorderSDFShader);
-GE_PARAMS_TYPE_INFO(GECeliaEffectShaderParams, CELIA_EFFECT, CeliaEffect);
+GE_PARAMS_TYPE_INFO(GECeliaBallEffectShaderParams, CELIA_BALL_EFFECT, CeliaBallEffect);
 GE_PARAMS_TYPE_INFO(GECircleFlowlightEffectParams, CIRCLE_FLOWLIGHT, CircleFlowlight);
 GE_PARAMS_TYPE_INFO(GEColorGradientShaderFilterParams, COLOR_GRADIENT, ColorGradient);
 GE_PARAMS_TYPE_INFO(GEContentLightFilterParams, CONTENT_LIGHT, ContentLight);
@@ -1743,39 +1743,48 @@ GE_PARAMS_FIELD_ACCESSOR(GEBorderSDFShaderParams, style, BORDER_SDF_SHADER_STYLE
 GE_PARAMS_FIELD_ACCESSOR(GEBorderSDFShaderParams, dashWidth, BORDER_SDF_SHADER_DASH_WIDTH, BorderSDFShader_DashWidth);
 GE_PARAMS_FIELD_ACCESSOR(GEBorderSDFShaderParams, dashGap, BORDER_SDF_SHADER_DASH_GAP, BorderSDFShader_DashGap);
 GE_PARAMS_FIELD_ACCESSOR(GEBorderSDFShaderParams, shape, BORDER_SDF_SHADER_SHAPE, BorderSDFShader_Shape);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, mask, CELIA_EFFECT_MASK, CeliaEffect_Mask);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, maskClock, CELIA_EFFECT_MASK_CLOCK, CeliaEffect_MaskClock);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, maskProgress, CELIA_EFFECT_MASK_PROGRESS, CeliaEffect_MaskProgress);
+GE_PARAMS_FIELD_ACCESSOR(GECeliaBallEffectShaderParams, mask, CELIA_BALL_EFFECT_MASK, CeliaBallEffect_Mask);
 GE_PARAMS_FIELD_ACCESSOR(
-    GECeliaEffectShaderParams, useEffectMask, CELIA_EFFECT_USE_EFFECT_MASK, CeliaEffect_UseEffectMask);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, tintColor, CELIA_EFFECT_TINT_COLOR, CeliaEffect_TintColor);
+    GECeliaBallEffectShaderParams, maskClock, CELIA_BALL_EFFECT_MASK_CLOCK, CeliaBallEffect_MaskClock);
 GE_PARAMS_FIELD_ACCESSOR(
-    GECeliaEffectShaderParams, ripplePosition, CELIA_EFFECT_RIPPLE_POSITION, CeliaEffect_RipplePosition);
+    GECeliaBallEffectShaderParams, maskProgress, CELIA_BALL_EFFECT_MASK_PROGRESS, CeliaBallEffect_MaskProgress);
 GE_PARAMS_FIELD_ACCESSOR(
-    GECeliaEffectShaderParams, rippleProgress, CELIA_EFFECT_RIPPLE_PROGRESS, CeliaEffect_RippleProgress);
+    GECeliaBallEffectShaderParams, useEffectMask, CELIA_BALL_EFFECT_USE_EFFECT_MASK, CeliaBallEffect_UseEffectMask);
 GE_PARAMS_FIELD_ACCESSOR(
-    GECeliaEffectShaderParams, distortProgress, CELIA_EFFECT_DISTORT_PROGRESS, CeliaEffect_DistortProgress);
+    GECeliaBallEffectShaderParams, tintColor, CELIA_BALL_EFFECT_TINT_COLOR, CeliaBallEffect_TintColor);
 GE_PARAMS_FIELD_ACCESSOR(
-    GECeliaEffectShaderParams, distortFactor, CELIA_EFFECT_DISTORT_FACTOR, CeliaEffect_DistortFactor);
+    GECeliaBallEffectShaderParams, ripplePosition, CELIA_BALL_EFFECT_RIPPLE_POSITION, CeliaBallEffect_RipplePosition);
 GE_PARAMS_FIELD_ACCESSOR(
-    GECeliaEffectShaderParams, reflectionFactor, CELIA_EFFECT_REFLECTION_FACTOR, CeliaEffect_ReflectionFactor);
+    GECeliaBallEffectShaderParams, rippleProgress, CELIA_BALL_EFFECT_RIPPLE_PROGRESS, CeliaBallEffect_RippleProgress);
+GE_PARAMS_FIELD_ACCESSOR(GECeliaBallEffectShaderParams, distortProgress, CELIA_BALL_EFFECT_DISTORT_PROGRESS,
+    CeliaBallEffect_DistortProgress);
 GE_PARAMS_FIELD_ACCESSOR(
-    GECeliaEffectShaderParams, refractionFactor, CELIA_EFFECT_REFRACTION_FACTOR, CeliaEffect_RefractionFactor);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, blurLeft, CELIA_EFFECT_BLUR_LEFT, CeliaEffect_BlurLeft);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, blurTop, CELIA_EFFECT_BLUR_TOP, CeliaEffect_BlurTop);
+    GECeliaBallEffectShaderParams, distortFactor, CELIA_BALL_EFFECT_DISTORT_FACTOR, CeliaBallEffect_DistortFactor);
+GE_PARAMS_FIELD_ACCESSOR(GECeliaBallEffectShaderParams, reflectionFactor, CELIA_BALL_EFFECT_REFLECTION_FACTOR,
+    CeliaBallEffect_ReflectionFactor);
+GE_PARAMS_FIELD_ACCESSOR(GECeliaBallEffectShaderParams, refractionFactor, CELIA_BALL_EFFECT_REFRACTION_FACTOR,
+    CeliaBallEffect_RefractionFactor);
 GE_PARAMS_FIELD_ACCESSOR(
-    GECeliaEffectShaderParams, materialFactor, CELIA_EFFECT_MATERIAL_FACTOR, CeliaEffect_MaterialFactor);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, cornerRadius, CELIA_EFFECT_CORNER_RADIUS, CeliaEffect_CornerRadius);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, rate, CELIA_EFFECT_RATE, CeliaEffect_Rate);
+    GECeliaBallEffectShaderParams, blurLeft, CELIA_BALL_EFFECT_BLUR_LEFT, CeliaBallEffect_BlurLeft);
+GE_PARAMS_FIELD_ACCESSOR(GECeliaBallEffectShaderParams, blurTop, CELIA_BALL_EFFECT_BLUR_TOP, CeliaBallEffect_BlurTop);
 GE_PARAMS_FIELD_ACCESSOR(
-    GECeliaEffectShaderParams, lightUpDegree, CELIA_EFFECT_LIGHT_UP_DEGREE, CeliaEffect_LightUpDegree);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, cubicCoeff, CELIA_EFFECT_CUBIC_COEFF, CeliaEffect_CubicCoeff);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, quadCoeff, CELIA_EFFECT_QUAD_COEFF, CeliaEffect_QuadCoeff);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, saturation, CELIA_EFFECT_SATURATION, CeliaEffect_Saturation);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, posRGB, CELIA_EFFECT_POS_R_G_B, CeliaEffect_PosRGB);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, negRGB, CELIA_EFFECT_NEG_R_G_B, CeliaEffect_NegRGB);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, fraction, CELIA_EFFECT_FRACTION, CeliaEffect_Fraction);
-GE_PARAMS_FIELD_ACCESSOR(GECeliaEffectShaderParams, totalMatrix, CELIA_EFFECT_TOTAL_MATRIX, CeliaEffect_TotalMatrix);
+    GECeliaBallEffectShaderParams, materialFactor, CELIA_BALL_EFFECT_MATERIAL_FACTOR, CeliaBallEffect_MaterialFactor);
+GE_PARAMS_FIELD_ACCESSOR(
+    GECeliaBallEffectShaderParams, cornerRadius, CELIA_BALL_EFFECT_CORNER_RADIUS, CeliaBallEffect_CornerRadius);
+GE_PARAMS_FIELD_ACCESSOR(GECeliaBallEffectShaderParams, rate, CELIA_BALL_EFFECT_RATE, CeliaBallEffect_Rate);
+GE_PARAMS_FIELD_ACCESSOR(
+    GECeliaBallEffectShaderParams, lightUpDegree, CELIA_BALL_EFFECT_LIGHT_UP_DEGREE, CeliaBallEffect_LightUpDegree);
+GE_PARAMS_FIELD_ACCESSOR(
+    GECeliaBallEffectShaderParams, cubicCoeff, CELIA_BALL_EFFECT_CUBIC_COEFF, CeliaBallEffect_CubicCoeff);
+GE_PARAMS_FIELD_ACCESSOR(
+    GECeliaBallEffectShaderParams, quadCoeff, CELIA_BALL_EFFECT_QUAD_COEFF, CeliaBallEffect_QuadCoeff);
+GE_PARAMS_FIELD_ACCESSOR(
+    GECeliaBallEffectShaderParams, saturation, CELIA_BALL_EFFECT_SATURATION, CeliaBallEffect_Saturation);
+GE_PARAMS_FIELD_ACCESSOR(GECeliaBallEffectShaderParams, posRGB, CELIA_BALL_EFFECT_POS_R_G_B, CeliaBallEffect_PosRGB);
+GE_PARAMS_FIELD_ACCESSOR(GECeliaBallEffectShaderParams, negRGB, CELIA_BALL_EFFECT_NEG_R_G_B, CeliaBallEffect_NegRGB);
+GE_PARAMS_FIELD_ACCESSOR(GECeliaBallEffectShaderParams, fraction, CELIA_BALL_EFFECT_FRACTION, CeliaBallEffect_Fraction);
+GE_PARAMS_FIELD_ACCESSOR(
+    GECeliaBallEffectShaderParams, totalMatrix, CELIA_BALL_EFFECT_TOTAL_MATRIX, CeliaBallEffect_TotalMatrix);
 GE_PARAMS_ARRAY_ELEMENT_ACCESSOR(
     GECircleFlowlightEffectParams, colors, 0, CIRCLE_FLOWLIGHT_COLORS0, CircleFlowlight_Color0);
 GE_PARAMS_ARRAY_ELEMENT_ACCESSOR(
