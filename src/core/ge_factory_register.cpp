@@ -43,6 +43,7 @@
 #include "effect/filter/ge_sdf_edge_light.h"
 #include "effect/filter/ge_sdf_from_image_filter.h"
 #include "effect/filter/ge_sound_wave_filter.h"
+#include "effect/filter/ge_spin_blur_shader_filter.h"
 #include "effect/filter/ge_variable_radius_blur_shader_filter.h"
 #include "effect/filter/ge_water_ripple_filter.h"
 #include "effect/ge_shader_filter_params.h"
@@ -54,6 +55,7 @@
 #include "effect/mask/ge_radial_gradient_shader_mask.h"
 #include "effect/mask/ge_ripple_shader_mask.h"
 #include "effect/mask/ge_use_effect_shader_mask.h"
+#include "effect/mask/ge_warped_ring_shader_mask.h"
 #include "effect/mask/ge_wave_disturb_shader_mask.h"
 #include "effect/mask/ge_wave_gradient_shader_mask.h"
 #include "effect/shader/ge_aurora_noise_shader.h"
@@ -115,6 +117,7 @@ GE_FACTORY_REGISTER(GEMotionBlurShaderFilter)
 GE_FACTORY_REGISTER(GESDFFromImageFilter)
 GE_FACTORY_REGISTER(GESDFEdgeLight)
 GE_FACTORY_REGISTER(GESoundWaveFilter)
+GE_FACTORY_REGISTER(GESpinBlurShaderFilter)
 GE_FACTORY_REGISTER(GEWaterRippleFilter)
 
 // 1.2 Dynamically loaded effects
@@ -257,6 +260,7 @@ GE_FACTORY_REGISTER_MASK(GEPixelMapShaderMask)
 GE_FACTORY_REGISTER_MASK(GERadialGradientShaderMask)
 GE_FACTORY_REGISTER_MASK(GERippleShaderMask)
 GE_FACTORY_REGISTER_MASK(GEUseEffectShaderMask)
+GE_FACTORY_REGISTER_MASK(GEWarpedRingShaderMask)
 GE_FACTORY_REGISTER_MASK(GEWaveDisturbanceShaderMask)
 GE_FACTORY_REGISTER_MASK(GEWaveGradientShaderMask)
 
