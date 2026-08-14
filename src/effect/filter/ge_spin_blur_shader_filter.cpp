@@ -152,78 +152,38 @@ std::shared_ptr<Drawing::RuntimeShaderBuilder> GESpinBlurShaderFilter::MakeSpinB
     if (g_spinBlurShaderEffect_ == nullptr) {
         static constexpr char prog[] = R"(
             uniform shader srcImageShader;
-            uniform half2 iResolution;
-            uniform half4 color[12];
-            uniform half2 position[12];
-            uniform half strength[12];
+            uniform float2 iResolution;
 
-            half blendMultipleColorsByDistance(half2 uv, half2 positions, half strength)
+            const int samples = 32;
+            const float blurPixels = 125.0;
+            const float2 center = float2(0.5, 0.5);
+
+            float2 rotate2D(float2 p, float angle)
             {
-                positions.x *= iResolution.x / iResolution.y;
-                half2 dist = uv - positions;
-                half weight = strength / (dot(dist, dist) + 0.0001);
-                return weight;
+                float cosine = cos(angle);
+                float sine = sin(angle);
+                return float2(cosine * p.x - sine * p.y, sine * p.x + cosine * p.y);
             }
 
-            half4 main(vec2 fragCoord)
+            half4 main(float2 fragCoord)
             {
-                half2 uv = fragCoord / iResolution.xy;
-                half screenRatio = iResolution.x / iResolution.y;
-                uv.x *= screenRatio;
-                half totalWeight = 0.0;
-                half4 blendColor = half4(0.0);
+                float2 centerPixels = center * iResolution;
+                float2 p = fragCoord - centerPixels;
+                float radius = length(p);
+                float maxAngle = blurPixels / max(radius, 1.0);
+                half4 sum = half4(0.0);
+                float weightSum = 0.0;
 
-                half colorSphereWeight = blendMultipleColorsByDistance(uv, position[0], strength[0]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[0] * colorSphereWeight;
+                for (int i = 0; i < samples; ++i) {
+                    float t = (float(i) + 0.5) / float(samples) - 0.5;
+                    float angle = t * maxAngle;
+                    float2 sampleCoord = rotate2D(p, angle) + centerPixels;
+                    float weight = exp(-t * t * 6.0);
+                    sum += srcImageShader.eval(sampleCoord) * weight;
+                    weightSum += weight;
+                }
 
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[1], strength[1]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[1] * colorSphereWeight;
-
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[2], strength[2]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[2] * colorSphereWeight;
-
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[3], strength[3]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[3] * colorSphereWeight;
-
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[4], strength[4]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[4] * colorSphereWeight;
-
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[5], strength[5]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[5] * colorSphereWeight;
-
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[6], strength[6]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[6] * colorSphereWeight;
-
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[7], strength[7]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[7] * colorSphereWeight;
-
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[8], strength[8]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[8] * colorSphereWeight;
-
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[9], strength[9]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[9] * colorSphereWeight;
-
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[10], strength[10]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[10] * colorSphereWeight;
-
-                colorSphereWeight = blendMultipleColorsByDistance(uv, position[11], strength[11]);
-                totalWeight += colorSphereWeight;
-                blendColor += color[11] * colorSphereWeight;
-
-                half4 finalColor = half4(blendColor / totalWeight);
-                finalColor.rgb = mix(srcImageShader.eval(fragCoord).rgb, finalColor.rgb, finalColor.a);
-                return half4(finalColor.rgb, 1.0);
+                return sum / weightSum;
             }
         )";
 
