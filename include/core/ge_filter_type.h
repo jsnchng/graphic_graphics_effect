@@ -113,6 +113,8 @@ enum class GEFilterType : int32_t {
     BLUR,
     SDF_SUB_OP_SHAPE,
     SDF_SMOOTH_SUB_OP_SHAPE,
+    WARPED_RING,
+    SPIN_BLUR,
     MAX,
 };
 

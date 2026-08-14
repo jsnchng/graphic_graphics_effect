@@ -573,11 +573,19 @@ enum class GEParamsMemberTag : uint32_t {
     SPATIAL_POINT_LIGHT_ATTENUATION,
     SPATIAL_POINT_LIGHT_LIGHT_COLOR,
     SPATIAL_POINT_LIGHT_MASK,
+    SPIN_BLUR_COLORS,
+    SPIN_BLUR_POSITIONS,
+    SPIN_BLUR_STRENGTHS,
+    SPIN_BLUR_MASK,
     USE_EFFECT_MASK_IMAGE,
     USE_EFFECT_MASK_USE_EFFECT,
     VARIABLE_RADIUS_BLUR_MASK,
     VARIABLE_RADIUS_BLUR_BLUR_RADIUS,
     VARIABLE_RADIUS_BLUR_APPLY_INSIDE_MASK,
+    WARPED_RING_CENTER,
+    WARPED_RING_RADIUS,
+    WARPED_RING_WIDTH,
+    WARPED_RING_WIDTH_CENTER_OFFSET,
     WATER_DROPLET_TRANSITION_TOP_LAYER,
     WATER_DROPLET_TRANSITION_INVERSE,
     WATER_DROPLET_TRANSITION_PROGRESS,
@@ -1560,8 +1568,10 @@ GE_PARAMS_TYPE_INFO(GESDFUnionOpShapeParams, SDF_UNION_OP, SDFUnionOpShape);
 GE_PARAMS_TYPE_INFO(GESoundWaveFilterParams, SOUND_WAVE, SoundWave);
 GE_PARAMS_TYPE_INFO(GESpatialGlassEffectParams, SPATIAL_GLASS_EFFECT, SpatialGlassEffect);
 GE_PARAMS_TYPE_INFO(GESpatialPointLightShaderParams, SPATIAL_POINT_LIGHT, SpatialPointLight);
+GE_PARAMS_TYPE_INFO(GESpinBlurShaderFilterParams, SPIN_BLUR, SpinBlur);
 GE_PARAMS_TYPE_INFO(GEUseEffectMaskParams, USE_EFFECT_MASK, UseEffectMask);
 GE_PARAMS_TYPE_INFO(GEVariableRadiusBlurShaderFilterParams, VARIABLE_RADIUS_BLUR, VariableRadiusBlur);
+GE_PARAMS_TYPE_INFO(GEWarpedRingShaderMaskParams, WARPED_RING, WarpedRingMask);
 GE_PARAMS_TYPE_INFO(GEWaterDropletTransitionFilterParams, WATER_DROPLET_TRANSITION, WaterDropletTransition);
 GE_PARAMS_TYPE_INFO(GEWaterRippleFilterParams, WATER_RIPPLE, WATER_RIPPLE);
 GE_PARAMS_TYPE_INFO(GEWaveDisturbanceShaderMaskParams, WAVE_DISTURBANCE_MASK, WaveDisturbanceMask);
@@ -2426,6 +2436,10 @@ GE_PARAMS_FIELD_ACCESSOR(
 GE_PARAMS_FIELD_ACCESSOR(
     GESpatialPointLightShaderParams, lightColor, SPATIAL_POINT_LIGHT_LIGHT_COLOR, SpatialPointLight_LightColor);
 GE_PARAMS_FIELD_ACCESSOR(GESpatialPointLightShaderParams, mask, SPATIAL_POINT_LIGHT_MASK, SpatialPointLight_Mask);
+GE_PARAMS_FIELD_ACCESSOR(GESpinBlurShaderFilterParams, colors, SPIN_BLUR_COLORS, SpinBlur_Colors);
+GE_PARAMS_FIELD_ACCESSOR(GESpinBlurShaderFilterParams, positions, SPIN_BLUR_POSITIONS, SpinBlur_Positions);
+GE_PARAMS_FIELD_ACCESSOR(GESpinBlurShaderFilterParams, strengths, SPIN_BLUR_STRENGTHS, SpinBlur_Strengths);
+GE_PARAMS_FIELD_ACCESSOR(GESpinBlurShaderFilterParams, mask, SPIN_BLUR_MASK, SpinBlur_Mask);
 GE_PARAMS_FIELD_ACCESSOR(GEUseEffectMaskParams, image, USE_EFFECT_MASK_IMAGE, UseEffectMask_Image);
 GE_PARAMS_FIELD_ACCESSOR(GEUseEffectMaskParams, useEffect, USE_EFFECT_MASK_USE_EFFECT, UseEffectMask_UseEffect);
 GE_PARAMS_FIELD_ACCESSOR(
@@ -2434,6 +2448,11 @@ GE_PARAMS_FIELD_ACCESSOR(
     GEVariableRadiusBlurShaderFilterParams, blurRadius, VARIABLE_RADIUS_BLUR_BLUR_RADIUS, VariableRadiusBlur_Radius);
 GE_PARAMS_FIELD_ACCESSOR(GEVariableRadiusBlurShaderFilterParams, applyInsideMask,
     VARIABLE_RADIUS_BLUR_APPLY_INSIDE_MASK, VariableRadiusBlur_ApplyInsideMask);
+GE_PARAMS_FIELD_ACCESSOR(GEWarpedRingShaderMaskParams, center_, WARPED_RING_CENTER, WarpedRingMask_Center);
+GE_PARAMS_FIELD_ACCESSOR(GEWarpedRingShaderMaskParams, radius_, WARPED_RING_RADIUS, WarpedRingMask_Radius);
+GE_PARAMS_FIELD_ACCESSOR(GEWarpedRingShaderMaskParams, width_, WARPED_RING_WIDTH, WarpedRingMask_Width);
+GE_PARAMS_FIELD_ACCESSOR(
+    GEWarpedRingShaderMaskParams, widthCenterOffset_, WARPED_RING_WIDTH_CENTER_OFFSET, WarpedRingMask_Offset);
 GE_PARAMS_FIELD_ACCESSOR(GEWaterDropletTransitionFilterParams, topLayer, WATER_DROPLET_TRANSITION_TOP_LAYER,
     WaterDropletTransition_TopLayer);
 GE_PARAMS_FIELD_ACCESSOR(
